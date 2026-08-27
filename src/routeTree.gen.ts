@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GeneratorsIndexRouteImport } from './routes/generators/index'
+import { Route as GeneratorsSlugRouteImport } from './routes/generators/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GeneratorsIndexRoute = GeneratorsIndexRouteImport.update({
+  id: '/generators/',
+  path: '/generators/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GeneratorsSlugRoute = GeneratorsSlugRouteImport.update({
+  id: '/generators/$slug',
+  path: '/generators/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/generators/$slug': typeof GeneratorsSlugRoute
+  '/generators/': typeof GeneratorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/generators/$slug': typeof GeneratorsSlugRoute
+  '/generators': typeof GeneratorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/generators/$slug': typeof GeneratorsSlugRoute
+  '/generators/': typeof GeneratorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/generators/$slug' | '/generators/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/generators/$slug' | '/generators'
+  id: '__root__' | '/' | '/generators/$slug' | '/generators/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GeneratorsSlugRoute: typeof GeneratorsSlugRoute
+  GeneratorsIndexRoute: typeof GeneratorsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/generators/': {
+      id: '/generators/'
+      path: '/generators'
+      fullPath: '/generators/'
+      preLoaderRoute: typeof GeneratorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/generators/$slug': {
+      id: '/generators/$slug'
+      path: '/generators/$slug'
+      fullPath: '/generators/$slug'
+      preLoaderRoute: typeof GeneratorsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GeneratorsSlugRoute: GeneratorsSlugRoute,
+  GeneratorsIndexRoute: GeneratorsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
