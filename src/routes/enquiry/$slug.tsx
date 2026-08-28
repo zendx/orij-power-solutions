@@ -28,7 +28,7 @@ export const Route = createFileRoute("/enquiry/$slug")({
       ],
     };
   },
-  component: Enquiry;
+  component: Enquiry,
 });
 
 function Enquiry() {

@@ -5,18 +5,18 @@ import { GeneratorCard } from "@/components/GeneratorCard";
 import { bandFor, bands, generators, type BandId } from "@/data/generators";
 
 type Search = {
-  band?: BandId;
-  duty?: "Prime" | "Standby";
-  enclosure?: "Open Frame" | "Soundproof Canopy" | "Containerised";
-  sort?: "asc" | "desc";
+  band: BandId | undefined;
+  duty: "Prime" | "Standby" | undefined;
+  enclosure: "Open Frame" | "Soundproof Canopy" | "Containerised" | undefined;
+  sort: "asc" | "desc";
 };
 
 export const Route = createFileRoute("/generators/")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    band: (search.band as BandId) || undefined,
-    duty: (search.duty as Search["duty"]) || undefined,
-    enclosure: (search.enclosure as Search["enclosure"]) || undefined,
-    sort: search.sort === "desc" ? "desc" : "asc",
+    band: (search["band"] as BandId) || undefined,
+    duty: (search["duty"] as Search["duty"]) || undefined,
+    enclosure: (search["enclosure"] as Search["enclosure"]) || undefined,
+    sort: search["sort"] === "desc" ? "desc" : "asc",
   }),
   head: () => ({
     meta: [
