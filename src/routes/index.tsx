@@ -59,7 +59,6 @@ function Home() {
                   <Link
                     key={band.id}
                     to="/generators"
-                    search={{ band: band.id }}
                     className="border-2 border-navy py-4 text-center font-mono text-xs font-bold transition-all hover:bg-navy hover:text-white"
                   >
                     {band.label}
