@@ -68,7 +68,7 @@ function Detail() {
               Home
             </Link>
             <span>/</span>
-            <Link to="/generators" search={{ sort: "asc" }} className="hover:text-orange">
+            <Link to="/generators" className="hover:text-orange">
               Catalogue
             </Link>
             <span>/</span>
