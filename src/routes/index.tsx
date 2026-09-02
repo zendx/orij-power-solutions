@@ -2,9 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { GeneratorCard } from "@/components/GeneratorCard";
-import { bands, generators } from "@/data/generators";
+import { bands, generators, getPrimaryPhoto } from "@/data/generators";
 import { site } from "@/lib/site";
-import heroImg from "@/assets/gen-hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -13,13 +12,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Orij Power supplies 15 kVA to 2000 kVA diesel generating sets across Nigeria. Read full specifications, then request pricing by call, WhatsApp or email.",
+          "Orij Power supplies diesel generators from 12.5 kVA to 2000 kVA for homes, businesses and industry, with project pricing by call, WhatsApp or email.",
       },
       { property: "og:title", content: "Orij Power | Industrial Diesel Generators" },
       {
         property: "og:description",
         content:
-          "Prime and standby diesel generator sets from 15 kVA to 2000 kVA. Full datasheets, pricing on enquiry.",
+          "Total power solutions from 12.5 kVA to 2000 kVA, with real product galleries and pricing on enquiry.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -29,7 +28,13 @@ export const Route = createFileRoute("/")({
 });
 
 const featured = generators.filter((g) =>
-  ["op-150d-perkins", "op-250c-cummins", "op-500p-prime"].includes(g.slug),
+  ["diesel-generator-20-kva", "fg-wilson-150-kva", "fg-wilson-1000-kva"].includes(g.slug),
+);
+const heroGenerator = generators.find((generator) => generator.slug === "fg-wilson-300-kva")!;
+const heroPhoto = getPrimaryPhoto(heroGenerator);
+const cataloguePhotoCount = generators.reduce(
+  (total, generator) => total + generator.gallery.length,
+  0,
 );
 
 function Home() {
@@ -42,17 +47,17 @@ function Home() {
           <div className="flex flex-col lg:flex-row">
             <div className="flex flex-1 animate-breaker flex-col justify-center p-8 lg:p-20">
               <p className="mb-4 font-mono text-sm uppercase tracking-[0.3em] text-orange">
-                // Industrial grade reliability
+                // Reliable power for home &amp; business
               </p>
               <h1 className="mb-8 text-balance font-display text-6xl leading-[0.85] tracking-wide sm:text-7xl lg:text-8xl">
-                HEAVY DUTY
+                TOTAL POWER
                 <br />
-                POWER SOLUTIONS
+                SOLUTION
               </h1>
               <p className="mb-10 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Prime and standby diesel generating sets from 15 kVA to 2000 kVA, specified,
-                installed and maintained for Nigerian industry. Read the full datasheet, then talk
-                to an engineer for pricing.
+                Diesel generating sets from 12.5 kVA to 2000 kVA for homes, businesses and industry.
+                Review our currently photographed units, then talk to an engineer for final
+                specification and pricing.
               </p>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {bands.map((band) => (
@@ -69,14 +74,15 @@ function Home() {
             <div className="grid flex-1 place-items-center bg-surface p-8 lg:p-12">
               <div className="relative w-full">
                 <img
-                  src={heroImg}
-                  alt="Soundproof industrial diesel generator set in navy canopy"
+                  src={heroPhoto.src}
+                  alt={heroPhoto.alt}
                   width={1200}
-                  height={912}
-                  className="w-full object-contain shadow-2xl"
+                  height={900}
+                  decoding="async"
+                  className="aspect-[4/3] w-full bg-white object-contain p-4 shadow-2xl"
                 />
                 <div className="absolute bottom-0 right-0 bg-orange px-3 py-1 font-mono text-[10px] text-white">
-                  BUILT FOR NIGERIAN LOAD PROFILES
+                  CURRENT CATALOGUE PHOTOGRAPHY
                 </div>
               </div>
             </div>
@@ -86,9 +92,9 @@ function Home() {
         <section className="border-b border-navy/10 bg-white">
           <div className="mx-auto grid max-w-[1500px] grid-cols-2 gap-px bg-navy/10 lg:grid-cols-4">
             {[
-              { k: "15 – 2000", v: "kVA range supplied" },
-              { k: "10 sec", v: "Standby load acceptance" },
-              { k: "3", v: "Regional service bases" },
+              { k: "12.5 – 2000", v: "kVA supply range" },
+              { k: String(generators.length), v: "Capacity groups" },
+              { k: String(cataloguePhotoCount), v: "Catalogue images" },
               { k: "24/7", v: "Technical response line" },
             ].map((stat) => (
               <div key={stat.v} className="bg-white p-8">
@@ -105,7 +111,7 @@ function Home() {
               <div>
                 <h2 className="font-display text-4xl tracking-wide">SELECTED UNITS</h2>
                 <p className="mt-2 font-mono text-xs uppercase text-muted-foreground">
-                  {generators.length} units in catalogue // pricing issued on enquiry
+                  {generators.length} capacity groups // {cataloguePhotoCount} product photos
                 </p>
               </div>
               <Link
@@ -130,8 +136,8 @@ function Home() {
               {[
                 {
                   n: "01",
-                  t: "READ THE DATASHEET",
-                  d: "Every unit lists ratings, engine, alternator, controller, fuel consumption, noise and dimensions. No guesswork.",
+                  t: "VIEW THE PRODUCT",
+                  d: "Review the stated rating, visible model reference and every supplied photo. Matching kVA views stay together in one gallery.",
                 },
                 {
                   n: "02",
@@ -156,7 +162,7 @@ function Home() {
                 to="/generators"
                 className="bg-orange px-8 py-4 font-display text-xl tracking-widest text-white hover:brightness-110"
               >
-                BROWSE SPECIFICATIONS
+                BROWSE CATALOGUE
               </Link>
               <a
                 href={`tel:${site.phone}`}

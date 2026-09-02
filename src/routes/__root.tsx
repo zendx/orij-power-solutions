@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Orij Power supplies prime and standby diesel generating sets from 15 kVA to 2000 kVA across Nigeria. Pricing on enquiry.",
+          "Orij Power supplies diesel generating sets from 12.5 kVA to 2000 kVA across Nigeria. Browse product photography and request project pricing.",
       },
       { name: "author", content: "Orij Power" },
       { property: "og:type", content: "website" },

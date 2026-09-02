@@ -1,8 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import { EnquiryChannels } from "@/components/EnquiryChannels";
-import { getGenerator } from "@/data/generators";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { formatKva, getBrandLabel, getGenerator, getPrimaryPhoto } from "@/data/generators";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/enquiry/$slug")({
@@ -12,11 +12,14 @@ export const Route = createFileRoute("/enquiry/$slug")({
     return { generator };
   },
   head: ({ loaderData }) => {
-    const g = loaderData?.generator;
-    const title = g ? `Request Pricing — ${g.name} | Orij Power` : "Request Pricing | Orij Power";
-    const description = g
-      ? `Request pricing for the ${g.name} (${g.kva} kVA) by WhatsApp, phone call or email. An Orij Power engineer confirms scope and quotation.`
+    const generator = loaderData?.generator;
+    const title = generator
+      ? `Request Pricing - ${generator.name} | Orij Power`
+      : "Request Pricing | Orij Power";
+    const description = generator
+      ? `Request pricing for the ${generator.name} (${formatKva(generator.kva)} kVA) by WhatsApp, phone call or email. An Orij Power engineer confirms the specification and project scope.`
       : "Request generator pricing from Orij Power by WhatsApp, call or email.";
+
     return {
       meta: [
         { title },
@@ -32,11 +35,14 @@ export const Route = createFileRoute("/enquiry/$slug")({
 });
 
 function Enquiry() {
-  const { generator: g } = Route.useLoaderData();
-
-  const reference = `${g.model} / ${g.kva} kVA ${g.duty} / ${g.enclosure}`;
-  const message = `Hello Orij Power, I would like pricing for the ${g.name} (${reference}). Engine: ${g.engine}. Please send a quotation including delivery and installation.`;
-  const subject = `Pricing request — ${g.model} (${g.kva} kVA)`;
+  const { generator } = Route.useLoaderData();
+  const brandLabel = getBrandLabel(generator);
+  const primaryPhoto = getPrimaryPhoto(generator);
+  const ratingLabel = `${formatKva(generator.kva)} kVA`;
+  const configurationLabel = generator.configurations.join(" / ");
+  const reference = `${generator.model} / ${ratingLabel} / ${brandLabel}`;
+  const message = `Hello Orij Power, I would like pricing for the ${generator.name} (${reference}). Please confirm the available specification and quote for delivery and installation.`;
+  const subject = `Pricing request - ${generator.model} (${ratingLabel})`;
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,14 +52,15 @@ function Enquiry() {
         <section className="border-b border-navy/10 bg-surface p-8 lg:px-20 lg:py-16">
           <div className="mx-auto max-w-[1500px]">
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-orange">
-              // Step 02 — request pricing
+              // Step 02 - request pricing
             </p>
             <h1 className="font-display text-5xl leading-none tracking-wide lg:text-7xl">
               YOU ARE ONE STEP FROM A QUOTATION
             </h1>
             <p className="mt-6 max-w-2xl text-muted-foreground">
               We do not process online payments. Choose the channel that suits you and an Orij Power
-              sales engineer confirms availability, installation scope and price for this unit.
+              sales engineer confirms availability, equipment specification, installation scope and
+              price for this unit.
             </p>
           </div>
         </section>
@@ -74,10 +81,10 @@ function Enquiry() {
                   { t: "Response time", d: "Within 1 working hour on WhatsApp" },
                   { t: "Quote validity", d: "14 days from issue" },
                   { t: "Included", d: "Delivery, install and ATS options priced" },
-                ].map((x) => (
-                  <div key={x.t} className="bg-white p-5">
-                    <p className="label-mono text-muted-foreground">{x.t}</p>
-                    <p className="mt-2 font-mono text-xs">{x.d}</p>
+                ].map((item) => (
+                  <div key={item.t} className="bg-white p-5">
+                    <p className="label-mono text-muted-foreground">{item.t}</p>
+                    <p className="mt-2 font-mono text-xs">{item.d}</p>
                   </div>
                 ))}
               </div>
@@ -87,44 +94,50 @@ function Enquiry() {
               <div className="bg-navy p-6 text-white">
                 <p className="label-mono text-orange">Selected unit</p>
                 <h2 className="mt-2 font-display text-3xl tracking-wide">
-                  {g.name.toUpperCase()}
+                  {generator.name.toUpperCase()}
                 </h2>
                 <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-white/50">
                   {reference}
                 </p>
               </div>
-              <img
-                src={g.image}
-                alt={`${g.name} diesel generator`}
-                loading="lazy"
-                width={1024}
-                height={768}
-                className="w-full bg-surface object-contain p-4"
-              />
+
+              <div className="aspect-[4/3] bg-surface p-4">
+                <img
+                  src={primaryPhoto.src}
+                  alt={primaryPhoto.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={1024}
+                  height={768}
+                  className="h-full w-full object-contain"
+                />
+              </div>
+
               <table className="w-full font-mono text-xs">
                 <tbody>
                   {[
-                    ["Prime power", `${g.kw} kW / ${g.kva} kVA`],
-                    ["Standby", `${g.standbyKva} kVA`],
-                    ["Engine", g.engine],
-                    ["Alternator", g.alternator],
-                    ["Controller", g.controller],
-                    ["Noise", g.noise],
-                  ].map(([k, v]) => (
-                    <tr key={k} className="border-t border-navy/10">
-                      <td className="p-3 uppercase text-muted-foreground">{k}</td>
-                      <td className="p-3 text-right">{v}</td>
+                    ["Catalogue rating", ratingLabel],
+                    ["Manufacturer", brandLabel],
+                    ["Model reference", generator.model],
+                    ["Fuel", generator.fuel],
+                    ["Configuration", configurationLabel],
+                    ["Availability", "Confirmed on enquiry"],
+                  ].map(([label, value]) => (
+                    <tr key={label} className="border-t border-navy/10">
+                      <td className="p-3 uppercase text-muted-foreground">{label}</td>
+                      <td className="p-3 text-right">{value}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+
               <div className="border-t border-navy/10 p-4">
                 <Link
                   to="/generators/$slug"
-                  params={{ slug: g.slug }}
-                  className="font-mono text-[10px] uppercase tracking-widest text-orange"
+                  params={{ slug: generator.slug }}
+                  className="font-mono text-[10px] uppercase tracking-widest text-orange focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
                 >
-                  ← Back to full datasheet
+                  <span aria-hidden="true">&larr;</span> Back to product details
                 </Link>
               </div>
             </aside>
@@ -141,7 +154,7 @@ function Enquiry() {
             </div>
             <Link
               to="/contact"
-              className="border border-white/20 px-8 py-4 font-display text-xl tracking-widest hover:bg-white/10"
+              className="border border-white/20 px-8 py-4 font-display text-xl tracking-widest hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
             >
               CONTACT OPTIONS
             </Link>

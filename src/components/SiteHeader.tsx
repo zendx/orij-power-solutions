@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import markAsset from "@/assets/orij-power-mark.png.asset.json";
 
 const nav = [
   { to: "/generators", label: "Generators" },
@@ -14,7 +13,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
           <img
-            src={markAsset.url}
+            src="/favicon.png"
             alt="Orij Power emblem"
             width={40}
             height={40}
