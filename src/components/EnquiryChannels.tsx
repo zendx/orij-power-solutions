@@ -18,7 +18,7 @@ export function EnquiryChannels({
         className="flex items-center justify-between bg-whatsapp px-5 py-4 text-white transition-opacity hover:opacity-90"
       >
         <span className="font-display text-lg tracking-widest">WHATSAPP PRICING</span>
-        <span className="label-mono opacity-80">Fastest</span>
+        <span className="label-mono opacity-80">{site.whatsappDisplay}</span>
       </a>
       <a
         href={`tel:${site.phone}`}

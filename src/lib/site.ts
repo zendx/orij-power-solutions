@@ -1,13 +1,13 @@
 export const site = {
   name: "Orij Power",
   tagline: "Powering Reliability",
-  phone: "+2348000000000",
-  phoneDisplay: "+234 800 000 0000",
+  phone: "+2348033558927",
+  phoneDisplay: "+234 803 355 8927",
   servicePhone: "+2348111111111",
   servicePhoneDisplay: "+234 811 111 1111",
-  whatsapp: "2348000000000",
-  email: "sales@orijpower.com",
-  serviceEmail: "technical@orijpower.com",
+  whatsapp: "2348060234445",
+  whatsappDisplay: "+234 806 023 4445",
+  email: "orijpower@gmail.com",
   offices: [
     { city: "Lagos", detail: "Victoria Island HQ" },
     { city: "Abuja", detail: "Central Business District" },

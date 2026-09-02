@@ -73,7 +73,6 @@ function Contact() {
               <div>
                 <p className="label-mono text-muted-foreground">Email</p>
                 <p className="mt-2 font-mono text-sm">{site.email}</p>
-                <p className="font-mono text-sm">{site.serviceEmail}</p>
               </div>
             </div>
           </div>

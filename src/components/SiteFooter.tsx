@@ -28,6 +28,7 @@ export function SiteFooter() {
           <ul className="space-y-2 font-mono text-xs text-white/80">
             <li>Sales: {site.phoneDisplay}</li>
             <li>Service: {site.servicePhoneDisplay}</li>
+            <li>WhatsApp: {site.whatsappDisplay}</li>
             <li>{site.email}</li>
           </ul>
         </div>
