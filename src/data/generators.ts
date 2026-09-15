@@ -9,11 +9,11 @@ import kva145Lineup from "../../generator/14.5kva.jpeg";
 import kva150Canopy from "../../generator/150KVA.jpeg";
 import kva150Open from "../../generator/150KVA 00.jpeg";
 import kva200Canopy from "../../generator/200kva.jpeg";
-import kva20Engine from "../../generator/20kva Basic.jpeg";
-import kva20Eletromak from "../../generator/20kva Eletromak.jpeg";
-import kva20FgWilson from "../../generator/20KVA.jpeg";
+import kva30FgWilson from "../../generator/P33-30KVA.jpeg";
+import kva45FgWilson from "../../generator/P50-45KVA.jpeg";
+import kva60FgWilson from "../../generator/P65-60KVA.jpeg";
 import kva250Open from "../../generator/250kva00.jpeg";
-import kva300Canopy from "../../generator/300kva.jpeg";
+import kva300Canopy from "../../generator/P330-300KVA.jpeg";
 import kva60Eletromak from "../../generator/60kva Eletromak.jpeg";
 
 export const bands = [
@@ -110,37 +110,75 @@ export const generators: Generator[] = [
     ],
   },
   {
-    slug: "diesel-generator-20-kva",
-    model: "EP22 / P22-1",
-    name: "20 kVA Diesel Generator",
-    brands: ["Eletromak", "FG Wilson"],
-    kva: 20,
+    slug: "fg-wilson-30-kva",
+    model: "P33",
+    name: "FG Wilson 30 kVA Diesel Generator",
+    brands: ["FG Wilson"],
+    kva: 30,
     fuel: "Diesel",
     configurations: ["Soundproof Canopy"],
     application: "Residential and small commercial backup",
     gallery: [
       {
-        src: kva20Eletromak,
-        alt: "Eletromak 20 kVA diesel generator in a white soundproof canopy",
-        caption: "Eletromak soundproof canopy",
-      },
-      {
-        src: kva20FgWilson,
-        alt: "FG Wilson 20 kVA diesel generator in a white soundproof canopy",
-        caption: "FG Wilson soundproof canopy",
-      },
-      {
-        src: kva20Engine,
-        alt: "20 kVA diesel generator with its canopy door open to show the engine",
-        caption: "Open-door engine view",
+        src: kva30FgWilson,
+        alt: "FG Wilson P33 30 kVA diesel generator in a white soundproof canopy",
+        caption: "P33 30 kVA soundproof canopy",
       },
     ],
     summary:
-      "One 20 kVA catalogue group with Eletromak and FG Wilson product views, including canopy exterior and engine access photography.",
+      "An FG Wilson P33 30 kVA diesel generator in a white canopy for residential and small commercial backup power.",
     highlights: [
-      "20 kVA catalogue rating",
-      "Eletromak and FG Wilson options pictured",
-      "Canopied and internal equipment views",
+      "30 kVA catalogue rating",
+      "FG Wilson P33 model reference",
+      "Soundproof canopy configuration",
+    ],
+  },
+  {
+    slug: "fg-wilson-45-kva",
+    model: "P50",
+    name: "FG Wilson 45 kVA Diesel Generator",
+    brands: ["FG Wilson"],
+    kva: 45,
+    fuel: "Diesel",
+    configurations: ["Soundproof Canopy"],
+    application: "Residential and commercial backup",
+    gallery: [
+      {
+        src: kva45FgWilson,
+        alt: "FG Wilson P50 45 kVA diesel generator in a white soundproof canopy",
+        caption: "P50 45 kVA soundproof canopy",
+      },
+    ],
+    summary:
+      "An FG Wilson P50 45 kVA diesel generator with an enclosed canopy for residential and commercial backup power.",
+    highlights: [
+      "45 kVA catalogue rating",
+      "FG Wilson P50 model reference",
+      "Soundproof canopy configuration",
+    ],
+  },
+  {
+    slug: "fg-wilson-60-kva",
+    model: "P65",
+    name: "FG Wilson 60 kVA Diesel Generator",
+    brands: ["FG Wilson"],
+    kva: 60,
+    fuel: "Diesel",
+    configurations: ["Soundproof Canopy"],
+    application: "Commercial and institutional backup",
+    gallery: [
+      {
+        src: kva60FgWilson,
+        alt: "FG Wilson P65 60 kVA diesel generator with its canopy open to show the engine and alternator",
+        caption: "P65 60 kVA open-door engine view",
+      },
+    ],
+    summary:
+      "An FG Wilson P65 60 kVA diesel generator photographed with its canopy open, showing the engine and alternator.",
+    highlights: [
+      "60 kVA catalogue rating",
+      "FG Wilson P65 model reference",
+      "Engine and alternator access pictured",
     ],
   },
   {
@@ -299,8 +337,8 @@ export const generators: Generator[] = [
   },
   {
     slug: "fg-wilson-300-kva",
-    model: "P330-3",
-    name: "FG Wilson 300 kVA Generator",
+    model: "P330",
+    name: "FG Wilson 300 kVA Diesel Generator",
     brands: ["FG Wilson"],
     kva: 300,
     fuel: "Diesel",
@@ -309,15 +347,15 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva300Canopy,
-        alt: "FG Wilson 300 kVA diesel generator in a large white soundproof canopy",
-        caption: "Soundproof canopy exterior",
+        alt: "FG Wilson P330 300 kVA diesel generator in a large white soundproof canopy",
+        caption: "P330 300 kVA soundproof canopy",
       },
     ],
     summary:
       "A 300 kVA FG Wilson diesel generator in a large-format acoustic canopy for demanding facility power requirements.",
     highlights: [
       "300 kVA catalogue rating",
-      "FG Wilson P330-3 model reference",
+      "FG Wilson P330 model reference",
       "Project pricing issued after site review",
     ],
   },

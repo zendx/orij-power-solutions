@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 });
 
 const featured = generators.filter((g) =>
-  ["diesel-generator-20-kva", "fg-wilson-150-kva", "fg-wilson-1000-kva"].includes(g.slug),
+  ["fg-wilson-30-kva", "fg-wilson-150-kva", "fg-wilson-1000-kva"].includes(g.slug),
 );
 const heroGenerator = generators.find((generator) => generator.slug === "fg-wilson-300-kva")!;
 const heroPhoto = getPrimaryPhoto(heroGenerator);
