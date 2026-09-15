@@ -34,6 +34,13 @@ export type GeneratorPhoto = {
   src: string;
   alt: string;
   caption: string;
+  // Source-pixel bounds trim excess background for landscape previews of the generator.
+  // Detail galleries continue to display the original photograph.
+  preview?: {
+    width: number;
+    height: number;
+    crop: readonly [x: number, y: number, width: number, height: number];
+  };
 };
 
 export type Generator = {
@@ -63,6 +70,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva125Canopy,
+        preview: { width: 810, height: 1080, crop: [0, 160, 810, 600] },
         alt: "FG Wilson 12.5 kVA diesel generator in a white soundproof canopy",
         caption: "Soundproof canopy view",
       },
@@ -92,6 +100,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva145Canopy,
+        preview: { width: 1280, height: 798, crop: [150, 20, 1110, 760] },
         alt: "FG Wilson 14.5 kVA diesel generator in a compact soundproof canopy",
         caption: "Soundproof canopy and controller view",
       },
@@ -121,6 +130,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva30FgWilson,
+        preview: { width: 546, height: 1152, crop: [0, 295, 546, 395] },
         alt: "FG Wilson P33 30 kVA diesel generator in a white soundproof canopy",
         caption: "P33 30 kVA soundproof canopy",
       },
@@ -145,6 +155,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva45FgWilson,
+        preview: { width: 960, height: 1280, crop: [0, 345, 960, 670] },
         alt: "FG Wilson P50 45 kVA diesel generator in a white soundproof canopy",
         caption: "P50 45 kVA soundproof canopy",
       },
@@ -169,6 +180,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva60FgWilson,
+        preview: { width: 1080, height: 1057, crop: [45, 320, 1035, 650] },
         alt: "FG Wilson P65 60 kVA diesel generator with its canopy open to show the engine and alternator",
         caption: "P65 60 kVA open-door engine view",
       },
@@ -222,6 +234,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva100Main,
+        preview: { width: 780, height: 1040, crop: [0, 140, 780, 585] },
         alt: "FG Wilson 100 kVA diesel generator in a white soundproof canopy",
         caption: "Soundproof canopy side view",
       },
@@ -246,6 +259,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva135Open,
+        preview: { width: 1080, height: 486, crop: [115, 65, 685, 355] },
         alt: "FG Wilson 135 kVA open-frame diesel generator showing the full engine assembly",
         caption: "Open-frame engine and alternator view",
       },
@@ -270,6 +284,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva150Canopy,
+        preview: { width: 1080, height: 486, crop: [115, 90, 685, 355] },
         alt: "FG Wilson 150 kVA diesel generator in a long white soundproof canopy",
         caption: "Soundproof canopy exterior",
       },
@@ -299,6 +314,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva200Canopy,
+        preview: { width: 1280, height: 1120, crop: [0, 90, 1250, 675] },
         alt: "FG Wilson 200 kVA diesel generator in a white soundproof canopy",
         caption: "Soundproof canopy exterior",
       },
@@ -323,6 +339,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva250Open,
+        preview: { width: 960, height: 432, crop: [120, 75, 600, 315] },
         alt: "FG Wilson 250 kVA soundproof diesel generator with its service doors open",
         caption: "Open-door equipment view",
       },
@@ -347,6 +364,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva300Canopy,
+        preview: { width: 1080, height: 810, crop: [0, 20, 1080, 630] },
         alt: "FG Wilson P330 300 kVA diesel generator in a large white soundproof canopy",
         caption: "P330 300 kVA soundproof canopy",
       },
@@ -371,6 +389,7 @@ export const generators: Generator[] = [
     gallery: [
       {
         src: kva1000Main,
+        preview: { width: 1080, height: 1080, crop: [10, 195, 1060, 580] },
         alt: "FG Wilson 1000 kVA open-frame diesel generator with a Perkins engine",
         caption: "Open-frame engine and alternator view",
       },

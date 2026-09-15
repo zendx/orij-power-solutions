@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { GeneratorPreview } from "@/components/GeneratorPreview";
 import { formatKva, getBrandLabel, getPrimaryPhoto, type Generator } from "@/data/generators";
 
 export function GeneratorCard({ generator }: { generator: Generator }) {
@@ -13,16 +14,8 @@ export function GeneratorCard({ generator }: { generator: Generator }) {
       aria-label={`View ${generator.name} photos and product details`}
       className="group flex min-w-0 flex-col bg-white p-6 transition-all hover:ring-2 hover:ring-orange focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange"
     >
-      <div className="relative mb-6 aspect-[4/3] w-full overflow-hidden border border-navy/5 bg-surface p-3">
-        <img
-          src={primaryPhoto.src}
-          alt={primaryPhoto.alt}
-          loading="lazy"
-          decoding="async"
-          width={1024}
-          height={768}
-          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-        />
+      <div className="relative mb-6 aspect-[4/3] w-full overflow-hidden border border-navy/5 bg-surface">
+        <GeneratorPreview photo={primaryPhoto} />
         {generator.gallery.length > 1 ? (
           <span className="absolute bottom-2 right-2 bg-navy px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-white">
             {generator.gallery.length} photos
