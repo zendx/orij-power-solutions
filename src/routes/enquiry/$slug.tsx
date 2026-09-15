@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { GeneratorPreview } from "@/components/GeneratorPreview";
 import { EnquiryChannels } from "@/components/EnquiryChannels";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -101,16 +102,8 @@ function Enquiry() {
                 </p>
               </div>
 
-              <div className="aspect-[4/3] bg-surface p-4">
-                <img
-                  src={primaryPhoto.src}
-                  alt={primaryPhoto.alt}
-                  loading="lazy"
-                  decoding="async"
-                  width={1024}
-                  height={768}
-                  className="h-full w-full object-contain"
-                />
+              <div className="aspect-[4/3] bg-surface">
+                <GeneratorPreview photo={primaryPhoto} />
               </div>
 
               <table className="w-full font-mono text-xs">
