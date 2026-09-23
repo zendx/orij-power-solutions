@@ -3,8 +3,6 @@ export const site = {
   tagline: "Powering Reliability",
   phone: "+2348033558927",
   phoneDisplay: "+234 803 355 8927",
-  servicePhone: "+2348111111111",
-  servicePhoneDisplay: "+234 811 111 1111",
   whatsapp: "2348060234445",
   whatsappDisplay: "+234 806 023 4445",
   email: "orijpower@gmail.com",

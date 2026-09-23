@@ -142,7 +142,7 @@ function Enquiry() {
             <div>
               <h2 className="font-display text-4xl tracking-wide">PREFER TO TALK FIRST?</h2>
               <p className="mt-2 font-mono text-xs text-white/60">
-                Sales desk {site.phoneDisplay} // Service {site.servicePhoneDisplay}
+                Sales desk {site.phoneDisplay}
               </p>
             </div>
             <Link

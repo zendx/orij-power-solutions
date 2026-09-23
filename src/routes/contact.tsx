@@ -61,14 +61,10 @@ function Contact() {
               ))}
             </div>
 
-            <div className="mt-16 grid gap-8 border-2 border-navy p-8 md:grid-cols-3">
+            <div className="mt-16 grid gap-8 border-2 border-navy p-8 md:grid-cols-2">
               <div>
                 <p className="label-mono text-muted-foreground">Sales desk</p>
                 <p className="mt-2 font-mono text-sm">{site.phoneDisplay}</p>
-              </div>
-              <div>
-                <p className="label-mono text-muted-foreground">Service line (24/7)</p>
-                <p className="mt-2 font-mono text-sm">{site.servicePhoneDisplay}</p>
               </div>
               <div>
                 <p className="label-mono text-muted-foreground">Email</p>
